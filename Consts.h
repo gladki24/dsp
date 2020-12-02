@@ -5,6 +5,7 @@
 #ifndef DSP_CONSTS_H
 #define DSP_CONSTS_H
 
+// Wav info
 const unsigned int FREQUENCY_RANGE = 44100;
 const unsigned int CHANNELS_NUMBER = 1;
 const unsigned int BYTES_PER_SAMPLE = 2;

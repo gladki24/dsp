@@ -57,13 +57,65 @@ void createBaseWav(short *data) {
     delete phaseState;
 }
 
+// create file from task 6b
+void modifyBaseWave(short* data) {
+
+    // column count
+    short phaseCount = 12;
+    // phase length
+    short phaseLength = SAMPLES_NUMBER / phaseCount;
+    double amplitude = 0;
+
+
+    for (unsigned i = 0; i < SAMPLES_NUMBER; i++) {
+
+        if (i >= phaseLength * 0 && i < phaseLength * 1) {
+            amplitude = 0.2;
+        } else if (i >= phaseLength * 1 && i < phaseLength * 2) {
+            amplitude = 0.4;
+        } else if (i >= phaseLength * 2 && i < phaseLength * 3) {
+            amplitude = 0.6;
+        } else if (i >= phaseLength * 3 && i < phaseLength * 4) {
+            amplitude = 0.8;
+        } else if (i >= phaseLength * 4 && i < phaseLength * 5) {
+            amplitude = 1;
+        } else if (i >= phaseLength * 5 && i < phaseLength * 6) {
+            amplitude = 0;
+        } else if (i >= phaseLength * 6 && i < phaseLength * 7) {
+            amplitude = 1;
+        } else if (i >= phaseLength * 7 && i < phaseLength * 8) {
+            amplitude = 0;
+        } else if (i >= phaseLength * 8 && i < phaseLength * 9) {
+            amplitude = 1;
+        } else if (i >= phaseLength * 9 && i < phaseLength * 10) {
+            amplitude = 0;
+        } else if (i >= phaseLength * 10 && i < phaseLength * 11) {
+            amplitude = 1;
+        } else if (i >= phaseLength * 11 && i < phaseLength * 12) {
+            amplitude = 0;
+        }
+
+        data[i] = data[i] * amplitude;
+    }
+
+}
+
 int main() {
-    short data[SAMPLES_NUMBER];
 
     // 5e
-    Wav wav("5e.wav");
+    short data[SAMPLES_NUMBER];
+    Wav wav5e("5e.wav");
     createBaseWav(data);
-    wav.write(data);
+    wav5e.write(data);
+
+    // 6b
+    short sampleData[SAMPLES_NUMBER];
+    wav5e.read(sampleData);
+
+    // save 6b result
+    Wav wav6b ("6b.wav");
+    modifyBaseWave(sampleData);
+    wav6b.write(sampleData);
 
     return 0;
 }

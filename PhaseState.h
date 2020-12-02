@@ -22,16 +22,6 @@ public:
         return nullptr;
     }
 
-    virtual PhaseState* nextMinusPi(PhaseState* prevState) {
-        delete prevState;
-        return nullptr;
-    }
-
-    virtual PhaseState* nextMinusHalfPi(PhaseState* prevState) {
-        delete prevState;
-        return nullptr;
-    }
-
     virtual void calc(double& phase, short factor) = 0;
 };
 
@@ -40,7 +30,6 @@ public:
     ~APhaseState() override = default;
     PhaseState *nextPi(PhaseState* prevState) override;
     PhaseState *nextHalfPi(PhaseState* prevState) override;
-    PhaseState *nextMinusHalfPi(PhaseState* prevState) override;
     void calc(double &phase, short factor) override;
 };
 
@@ -74,11 +63,6 @@ PhaseState * APhaseState::nextPi(PhaseState *prevState) {
 }
 
 PhaseState * APhaseState::nextHalfPi(PhaseState *prevState) {
-    delete prevState;
-    return new APhaseState();
-}
-
-PhaseState * APhaseState::nextMinusHalfPi(PhaseState *prevState) {
     delete prevState;
     return new APhaseState();
 }

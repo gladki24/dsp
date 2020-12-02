@@ -16,6 +16,7 @@ public:
 
     Wav(std::string fileName) : _fileName(std::move(fileName)) {}
 
+    // write data to wav file
     void write(short* data) {
         // open file to write
         FILE* wavFile = fopen(_fileName.c_str(), "wb");
@@ -25,8 +26,20 @@ public:
         fclose(wavFile);
     }
 
-    void read() {
-        // TODO
+    // read data from wav
+    void read(short* data) {
+        // open file in read and binary mode
+        FILE* file = fopen(_fileName.c_str(), "rb");
+
+        // skip const wav metadata
+        fseek(file, 44, SEEK_SET);
+
+        // read data
+        for (unsigned int i = 0; i < SAMPLES_NUMBER; i++) {
+            fread(&data[i], 1, BYTES_PER_SAMPLE, file);
+        }
+
+        fclose(file);
     }
 
 private:
