@@ -68,7 +68,6 @@ void modifyBaseWave(short* data) {
 
 
     for (unsigned i = 0; i < SAMPLES_NUMBER; i++) {
-
         if (i >= phaseLength * 0 && i < phaseLength * 1) {
             amplitude = 0.2;
         } else if (i >= phaseLength * 1 && i < phaseLength * 2) {
